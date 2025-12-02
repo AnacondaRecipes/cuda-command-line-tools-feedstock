@@ -1,4 +1,4 @@
-{% set version = "12.8.1" %}
+{% set version = "13.0.2" %}
 
 package:
   name: cuda-command-line-tools
@@ -10,19 +10,18 @@ source:
 
 build:
   number: 0
-  skip: true  # [osx or ppc64le]
+  skip: true  # [osx]
 
 requirements:
   run:
-    - cuda-cupti-dev 12.8.90
+    - cuda-cupti-dev 13.0.85
     # There is no `cuda-gdb` support on Windows so it is skipped.
     # Also `cuda-gdb` should be supported on `ppc64le`, but is currently broken.
     # xref: https://github.com/conda-forge/cuda-command-line-tools-feedstock/issues/6
-    - cuda-gdb 12.8.90       # [linux]
-    - cuda-nvdisasm 12.8.90
-    - cuda-nvprof 12.8.90    # [linux64 or win]
-    - cuda-nvtx 12.8.90      # [linux]
-    - cuda-sanitizer-api 12.8.93
+    - cuda-gdb 13.0.85       # [linux]
+    - cuda-nvdisasm 13.0.85
+    - cuda-nvtx 13.0.85      # [linux]
+    - cuda-sanitizer-api 13.0.85
 
 test:
   commands:
@@ -37,7 +36,10 @@ about:
   description: |
     Meta-package containing the command line tools to debug CUDA applications
   doc_url: https://docs.nvidia.com/cuda/index.html
+  dev_url: https://docs.nvidia.com/cuda/index.html
 
 extra:
+  skip-lints:
+    - license_file_overspecified
   recipe-maintainers:
     - conda-forge/cuda
