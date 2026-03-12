@@ -10,14 +10,12 @@ source:
 
 build:
   number: 0
-  skip: true  # [osx or ppc64le]
+  skip: true  # [osx]
 
 requirements:
   run:
     - cuda-cupti-dev 12.9.79
     # There is no `cuda-gdb` support on Windows so it is skipped.
-    # Also `cuda-gdb` should be supported on `ppc64le`, but is currently broken.
-    # xref: https://github.com/conda-forge/cuda-command-line-tools-feedstock/issues/6
     - cuda-gdb 12.9.79       # [linux]
     - cuda-nvdisasm 12.9.88
     - cuda-nvprof 12.9.79    # [linux64 or win]
@@ -33,10 +31,12 @@ about:
   license_file: LICENSE.txt
   license: LicenseRef-NVIDIA-End-User-License-Agreement
   license_url: https://docs.nvidia.com/cuda/eula/index.html
+  license_family: Other
   summary: Meta-package containing the command line tools to debug CUDA applications
   description: |
     Meta-package containing the command line tools to debug CUDA applications
   doc_url: https://docs.nvidia.com/cuda/index.html
+  dev_url: https://docs.nvidia.com/cuda/index.html
 
 extra:
   recipe-maintainers:
