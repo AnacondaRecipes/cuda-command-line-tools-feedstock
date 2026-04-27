@@ -1,4 +1,4 @@
-{% set version = "12.8.1" %}
+{% set version = "12.8.2" %}
 
 package:
   name: cuda-command-line-tools
@@ -10,15 +10,16 @@ source:
 
 build:
   number: 0
-  skip: true  # [osx or ppc64le]
+  skip: true  # [osx]
 
 requirements:
   run:
     - cuda-cupti-dev 12.8.90
     # There is no `cuda-gdb` support on Windows so it is skipped.
-    # Also `cuda-gdb` should be supported on `ppc64le`, but is currently broken.
-    # xref: https://github.com/conda-forge/cuda-command-line-tools-feedstock/issues/6
-    - cuda-gdb 12.8.90       # [linux]
+    # `cuda-gdb` for CTK 12.8 is broken. Please see the following GitHub issue for more details:
+    # https://github.com/conda-forge/cuda-gdb-feedstock/issues/27
+    # Also, we don't have the GDB version on the main channel old enough to support `cuda-gdb` for CTK 12.8
+    #- cuda-gdb 12.8.90       # [linux]
     - cuda-nvdisasm 12.8.90
     - cuda-nvprof 12.8.90    # [linux64 or win]
     - cuda-nvtx 12.8.90      # [linux]
@@ -33,10 +34,12 @@ about:
   license_file: LICENSE.txt
   license: LicenseRef-NVIDIA-End-User-License-Agreement
   license_url: https://docs.nvidia.com/cuda/eula/index.html
+  license_family: Other
   summary: Meta-package containing the command line tools to debug CUDA applications
   description: |
     Meta-package containing the command line tools to debug CUDA applications
   doc_url: https://docs.nvidia.com/cuda/index.html
+  dev_url: https://docs.nvidia.com/cuda/index.html
 
 extra:
   recipe-maintainers:
